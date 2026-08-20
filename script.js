@@ -125,75 +125,64 @@ if (directEmailLink) {
   const originalText = directEmailLink.textContent.trim();
 
   async function copyEmail() {
-    /*
-     * Try modern Clipboard API first.
-     */
-
     try {
       await navigator.clipboard.writeText(emailAddress);
 
       directEmailLink.textContent = "Email copied ✓";
 
+      directEmailLink.classList.add("copied");
+
       setTimeout(() => {
         directEmailLink.textContent = originalText;
-      }, 2000);
 
-      return;
+        directEmailLink.classList.remove("copied");
+      }, 2500);
     } catch (error) {
-      console.error("Clipboard API failed:", error);
+      console.error("Failed to copy email:", error);
+
+      /* Fallback for older browsers */
+
+      const temporaryInput = document.createElement("textarea");
+
+      temporaryInput.value = emailAddress;
+
+      temporaryInput.style.position = "fixed";
+
+      temporaryInput.style.opacity = "0";
+
+      document.body.appendChild(temporaryInput);
+
+      temporaryInput.focus();
+
+      temporaryInput.select();
+
+      try {
+        document.execCommand("copy");
+
+        directEmailLink.textContent = "Email copied ✓";
+
+        directEmailLink.classList.add("copied");
+
+        setTimeout(() => {
+          directEmailLink.textContent = originalText;
+
+          directEmailLink.classList.remove("copied");
+        }, 2500);
+      } catch (fallbackError) {
+        console.error("Fallback copy failed:", fallbackError);
+
+        alert("Unable to copy the email address.");
+      }
+
+      document.body.removeChild(temporaryInput);
     }
-
-    /*
-     * Fallback for browsers where
-     * Clipboard API is unavailable.
-     */
-
-    const textArea = document.createElement("textarea");
-
-    textArea.value = emailAddress;
-
-    textArea.style.position = "fixed";
-
-    textArea.style.left = "-9999px";
-
-    textArea.style.top = "0";
-
-    textArea.style.opacity = "0";
-
-    document.body.appendChild(textArea);
-
-    textArea.focus();
-
-    textArea.select();
-
-    try {
-      document.execCommand("copy");
-
-      directEmailLink.textContent = "Email copied ✓";
-
-      setTimeout(() => {
-        directEmailLink.textContent = originalText;
-      }, 2000);
-    } catch (fallbackError) {
-      console.error("Fallback copy failed:", fallbackError);
-
-      alert("Could not copy the email address.");
-    }
-
-    document.body.removeChild(textArea);
   }
 
-  /*
-   * Mouse click.
-   */
+  /* Mouse click */
 
-  directEmailLink.addEventListener("click", () => {
-    copyEmail();
-  });
+  directEmailLink.addEventListener("click", copyEmail);
 
-  /*
-   * Keyboard support.
-   */
+  /* Keyboard support */
 
   directEmailLink.addEventListener("keydown", (event) => {
     if (event.key === "Enter" || event.key === " ") {
@@ -218,7 +207,7 @@ if (contactForm) {
   const originalFormHTML = contactForm.innerHTML;
 
   /*
-   * Initialize contact form.
+   * Initialize the contact form.
    */
 
   function initializeContactForm() {
@@ -232,7 +221,7 @@ if (contactForm) {
   }
 
   /*
-   * Submit form through FormSubmit.
+   * Submit the form through AJAX.
    */
 
   async function handleFormSubmit(event) {
@@ -308,7 +297,7 @@ if (contactForm) {
       console.log("FLUXION FormSubmit response:", result);
 
       /* =====================================
-         CHECK SUCCESS
+         CHECK FOR ACTUAL SUCCESS
       ===================================== */
 
       if (!response.ok || result.success === false) {
@@ -363,7 +352,7 @@ if (contactForm) {
       if (sendAnotherButton) {
         sendAnotherButton.addEventListener("click", () => {
           /*
-           * Restore original form.
+           * Restore the original form.
            */
 
           form.innerHTML = originalFormHTML;
@@ -407,7 +396,7 @@ if (contactForm) {
   }
 
   /*
-   * Start form.
+   * Start the form.
    */
 
   initializeContactForm();

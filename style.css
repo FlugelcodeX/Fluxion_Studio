@@ -933,7 +933,7 @@ select {
 }
 
 /* =========================================
-   COPY-ONLY EMAIL
+   COPY EMAIL
 ========================================= */
 
 .contact-email {
@@ -950,7 +950,7 @@ select {
   border-top: 1px solid var(--border);
 }
 
-.contact-email > span:first-child {
+.contact-email span:first-child {
   color: var(--blue-500);
 
   font-size: 9px;
@@ -960,7 +960,7 @@ select {
   letter-spacing: 0.15em;
 }
 
-.contact-email #directEmailLink {
+.copy-email {
   color: var(--blue-white);
 
   font-family: "Space Grotesk", sans-serif;
@@ -976,16 +976,19 @@ select {
   user-select: none;
 }
 
-.contact-email #directEmailLink:hover {
+.copy-email:hover {
   color: var(--blue-400);
 }
 
-.contact-email #directEmailLink:focus {
+.copy-email:focus {
   outline: none;
 
   color: var(--blue-400);
 }
 
+.copy-email.copied {
+  color: var(--blue-400);
+}
 /* =========================================
    CONTACT FORM
 ========================================= */
