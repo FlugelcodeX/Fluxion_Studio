@@ -19,10 +19,6 @@
   --container: 1240px;
 }
 
-/* =========================================
-   RESET
-========================================= */
-
 * {
   margin: 0;
   padding: 0;
@@ -54,10 +50,6 @@ textarea,
 select {
   font-family: inherit;
 }
-
-/* =========================================
-   GLOBAL
-========================================= */
 
 .container {
   width: min(calc(100% - 80px), var(--container));
@@ -1048,7 +1040,7 @@ select {
 }
 
 /* =========================================
-   FORM
+   CONTACT FORM
 ========================================= */
 
 .contact-form-wrapper {
@@ -1159,16 +1151,6 @@ select {
   color: #53657d;
 
   font-size: 10px;
-
-  line-height: 1.6;
-}
-
-.form-status {
-  min-height: 20px;
-
-  color: var(--blue-400);
-
-  font-size: 12px;
 
   line-height: 1.6;
 }
