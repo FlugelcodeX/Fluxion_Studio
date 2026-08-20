@@ -31,11 +31,8 @@ html {
 
 body {
   background: var(--navy-950);
-
   color: var(--white);
-
   font-family: "Inter", sans-serif;
-
   overflow-x: hidden;
 }
 
@@ -53,7 +50,6 @@ select {
 
 .container {
   width: min(calc(100% - 80px), var(--container));
-
   margin: auto;
 }
 
@@ -67,19 +63,12 @@ select {
 
 .section-label {
   display: flex;
-
   align-items: center;
-
   gap: 12px;
-
   margin-bottom: 25px;
-
   color: var(--blue-400);
-
   font-size: 11px;
-
   font-weight: 700;
-
   letter-spacing: 0.2em;
 }
 
@@ -89,13 +78,9 @@ select {
 
 .section-heading h2 {
   max-width: 850px;
-
   font-family: "Space Grotesk", sans-serif;
-
   font-size: clamp(42px, 6vw, 82px);
-
   line-height: 0.98;
-
   letter-spacing: -0.05em;
 }
 
@@ -109,38 +94,26 @@ select {
 
 .navbar {
   position: fixed;
-
   top: 0;
   left: 0;
-
   width: 100%;
-
   z-index: 1000;
-
   background: rgba(5, 11, 24, 0.72);
-
   backdrop-filter: blur(20px);
-
   border-bottom: 1px solid var(--border);
 }
 
 .nav-container {
   height: 82px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 }
 
 .logo {
   font-family: "Space Grotesk", sans-serif;
-
   font-size: 24px;
-
   font-weight: 700;
-
   letter-spacing: -0.05em;
 }
 
@@ -150,19 +123,14 @@ select {
 
 .nav-links {
   display: flex;
-
   align-items: center;
-
   gap: 38px;
 }
 
 .nav-links a {
   color: var(--muted);
-
   font-size: 13px;
-
   font-weight: 500;
-
   transition: 0.3s;
 }
 
@@ -172,51 +140,34 @@ select {
 
 .nav-button {
   display: flex;
-
   align-items: center;
-
   gap: 12px;
-
   padding: 12px 18px;
-
   border: 1px solid rgba(37, 137, 255, 0.35);
-
   background: rgba(23, 105, 209, 0.08);
-
   color: var(--blue-white);
-
   font-size: 12px;
-
   font-weight: 600;
-
   transition: 0.3s;
 }
 
 .nav-button:hover {
   background: var(--blue-600);
-
   border-color: var(--blue-600);
 }
 
 .menu-toggle {
   display: none;
-
   background: none;
-
   border: none;
-
   cursor: pointer;
 }
 
 .menu-toggle span {
   display: block;
-
   width: 25px;
-
   height: 1px;
-
   margin: 6px 0;
-
   background: var(--white);
 }
 
@@ -226,21 +177,15 @@ select {
 
 .hero {
   position: relative;
-
   min-height: 100vh;
-
   display: flex;
-
   align-items: center;
-
   padding-top: 82px;
-
   overflow: hidden;
 }
 
 .hero-grid {
   position: absolute;
-
   inset: 0;
 
   background-image:
@@ -258,11 +203,9 @@ select {
   position: absolute;
 
   width: 700px;
-
   height: 700px;
 
   right: -200px;
-
   top: 50%;
 
   transform: translateY(-50%);
@@ -293,9 +236,7 @@ select {
 
 .eyebrow {
   display: flex;
-
   align-items: center;
-
   gap: 10px;
 
   margin-bottom: 28px;
@@ -311,7 +252,6 @@ select {
 
 .status-dot {
   width: 7px;
-
   height: 7px;
 
   border-radius: 50%;
@@ -337,7 +277,6 @@ select {
 
 .hero h1 span {
   display: block;
-
   color: var(--blue-500);
 }
 
@@ -419,7 +358,6 @@ select {
 
 .hero-visual {
   position: relative;
-
   height: 600px;
 }
 
@@ -427,11 +365,9 @@ select {
   position: absolute;
 
   width: 230px;
-
   height: 230px;
 
   top: 50%;
-
   left: 50%;
 
   transform: translate(-50%, -50%);
@@ -469,7 +405,6 @@ select {
   position: absolute;
 
   top: 50%;
-
   left: 50%;
 
   border: 1px solid rgba(85, 184, 255, 0.2);
@@ -481,7 +416,6 @@ select {
 
 .orbital-one {
   width: 400px;
-
   height: 180px;
 
   animation: orbit 12s linear infinite;
@@ -489,7 +423,6 @@ select {
 
 .orbital-two {
   width: 520px;
-
   height: 250px;
 
   transform: translate(-50%, -50%) rotate(55deg);
@@ -533,19 +466,16 @@ select {
 
 .card-one {
   top: 24%;
-
   left: 4%;
 }
 
 .card-two {
   top: 57%;
-
   right: 0;
 }
 
 .card-three {
   bottom: 15%;
-
   left: 17%;
 }
 
@@ -557,7 +487,6 @@ select {
   position: absolute;
 
   bottom: 0;
-
   left: 0;
 
   width: 100%;
@@ -1003,6 +932,10 @@ select {
   line-height: 1.8;
 }
 
+/* =========================================
+   COPY-ONLY EMAIL
+========================================= */
+
 .contact-email {
   display: flex;
 
@@ -1027,13 +960,7 @@ select {
   letter-spacing: 0.15em;
 }
 
-/* =========================================
-   COPY EMAIL
-========================================= */
-
-#directEmailLink {
-  display: inline-block;
-
+.contact-email #directEmailLink {
   color: var(--blue-white);
 
   font-family: "Space Grotesk", sans-serif;
@@ -1049,11 +976,11 @@ select {
   user-select: none;
 }
 
-#directEmailLink:hover {
+.contact-email #directEmailLink:hover {
   color: var(--blue-400);
 }
 
-#directEmailLink:focus {
+.contact-email #directEmailLink:focus {
   outline: none;
 
   color: var(--blue-400);
@@ -1574,6 +1501,10 @@ select {
     padding: 25px;
   }
 
+  .contact-email #directEmailLink {
+    font-size: 18px;
+  }
+
   .footer-top {
     flex-direction: column;
 
@@ -1588,9 +1519,5 @@ select {
     flex-direction: column;
 
     gap: 12px;
-  }
-
-  #directEmailLink {
-    font-size: 17px;
   }
 }
