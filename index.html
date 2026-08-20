@@ -1,653 +1,80 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<form
+  class="contact-form"
+  action="https://formsubmit.co/ajax/dereglafrancisjulianderegla@gmail.com"
+  method="POST">
+  <input type="hidden" name="_subject" value="New FLUXION Project Inquiry" />
 
-    <meta
-      name="description"
-      content="FLUXION — Web Design, Web Development, Graphic Design and Branding." />
+  <input
+    type="hidden"
+    name="_url"
+    value="https://flugelcodex.github.io/Fluxion_Studio/" />
 
-    <meta name="theme-color" content="#050B18" />
+  <input type="hidden" name="_captcha" value="false" />
 
-    <title>FLUXION — Web & Graphic Design Studio</title>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="name"> YOUR NAME </label>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="John Doe"
+        required />
+    </div>
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-      rel="stylesheet" />
+    <div class="form-group">
+      <label for="email"> YOUR EMAIL </label>
 
-    <link rel="stylesheet" href="./style.css" />
-  </head>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="john@example.com"
+        required />
+    </div>
+  </div>
 
-  <body>
-    <!-- =========================================
-     NAVIGATION
-========================================= -->
+  <div class="form-group">
+    <label for="purpose"> PROJECT TYPE </label>
 
-    <header class="navbar">
-      <div class="container nav-container">
-        <a href="#home" class="logo"> FLUXION<span>.</span> </a>
+    <select id="purpose" name="project_type" required>
+      <option value="">Select a service</option>
 
-        <nav class="nav-links">
-          <a href="#about">About</a>
-          <a href="#services">Services</a>
-          <a href="#work">Work</a>
-          <a href="#process">Process</a>
-          <a href="#contact">Contact</a>
-        </nav>
+      <option value="Website Design">Website Design</option>
 
-        <a href="#contact" class="nav-button">
-          Start a Project
-          <span>↗</span>
-        </a>
+      <option value="Website Development">Website Development</option>
 
-        <button
-          class="menu-toggle"
-          id="menuToggle"
-          aria-label="Open navigation">
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-    </header>
+      <option value="Graphic Design">Graphic Design</option>
 
-    <main>
-      <!-- =========================================
-     HERO
-========================================= -->
+      <option value="Branding">Branding & Visual Identity</option>
 
-      <section class="hero" id="home">
-        <div class="hero-grid"></div>
+      <option value="UI / UX Design">UI / UX Design</option>
 
-        <div class="container hero-container">
-          <div class="hero-content">
-            <div class="eyebrow">
-              <span class="status-dot"></span>
+      <option value="Social Media Design">Social Media Design</option>
 
-              WEB & GRAPHIC DESIGN STUDIO
-            </div>
+      <option value="Other">Other</option>
+    </select>
+  </div>
 
-            <h1>
-              We design
+  <div class="form-group">
+    <label for="message"> TELL US ABOUT YOUR PROJECT </label>
 
-              <span>digital</span>
+    <textarea
+      id="message"
+      name="message"
+      rows="7"
+      placeholder="Tell us about your project, goals, requirements, budget, or ideas..."
+      required></textarea>
+  </div>
 
-              experiences.
-            </h1>
+  <button type="submit" class="button button-primary submit-button">
+    Send Inquiry
 
-            <p class="hero-description">
-              FLUXION creates modern websites, visual identities, graphics, and
-              digital experiences designed to help brands stand out and connect
-              with their audience.
-            </p>
+    <span>↗</span>
+  </button>
 
-            <div class="hero-actions">
-              <a href="#work" class="button button-primary">
-                View Our Work
-                <span>↗</span>
-              </a>
-
-              <a href="#contact" class="button button-secondary">
-                Work With Us
-              </a>
-            </div>
-          </div>
-
-          <div class="hero-visual">
-            <div class="orbital orbital-one"></div>
-
-            <div class="orbital orbital-two"></div>
-
-            <div class="flux-core">
-              <div class="core-inner"></div>
-            </div>
-
-            <div class="floating-card card-one">
-              <span>01</span>
-
-              <strong> WEB DESIGN </strong>
-            </div>
-
-            <div class="floating-card card-two">
-              <span>02</span>
-
-              <strong> GRAPHIC DESIGN </strong>
-            </div>
-
-            <div class="floating-card card-three">
-              <span>03</span>
-
-              <strong> BRANDING </strong>
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-bottom">
-          <div class="container hero-bottom-inner">
-            <span> PHILIPPINES </span>
-
-            <div class="scroll-indicator">
-              <span></span>
-
-              SCROLL TO EXPLORE
-            </div>
-
-            <span> EST. 2026 </span>
-          </div>
-        </div>
-      </section>
-
-      <!-- =========================================
-     ABOUT
-========================================= -->
-
-      <section class="section about" id="about">
-        <div class="container">
-          <div class="section-heading">
-            <div class="section-label">
-              <span>01</span>
-
-              ABOUT FLUXION
-            </div>
-
-            <h2>
-              We turn ideas into
-
-              <span>visual experiences.</span>
-            </h2>
-          </div>
-
-          <div class="about-grid">
-            <div class="about-intro">
-              <p class="large-text">
-                FLUXION is a creative studio focused on building websites and
-                visual identities that look good, feel intuitive, and work.
-              </p>
-
-              <p>
-                We combine web development, UI/UX design, graphic design,
-                branding, and digital creativity to help businesses and
-                individuals establish a strong digital presence.
-              </p>
-            </div>
-
-            <div class="about-stats">
-              <div class="stat">
-                <strong>01</strong>
-
-                <span>
-                  WEB<br />
-                  DESIGN
-                </span>
-              </div>
-
-              <div class="stat">
-                <strong>02</strong>
-
-                <span>
-                  GRAPHIC<br />
-                  DESIGN
-                </span>
-              </div>
-
-              <div class="stat">
-                <strong>03</strong>
-
-                <span>
-                  BRAND<br />
-                  IDENTITY
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- =========================================
-     SERVICES
-========================================= -->
-
-      <section class="section services" id="services">
-        <div class="container">
-          <div class="section-heading split-heading">
-            <div>
-              <div class="section-label">
-                <span>02</span>
-
-                OUR SERVICES
-              </div>
-
-              <h2>
-                Design that
-
-                <span>works.</span>
-              </h2>
-            </div>
-
-            <p>
-              From a simple business website to a complete visual identity, we
-              create digital solutions tailored around your goals.
-            </p>
-          </div>
-
-          <div class="services-list">
-            <article class="service-item">
-              <div class="service-number">01</div>
-
-              <div class="service-content">
-                <h3>Web Design & Development</h3>
-
-                <p>
-                  Modern, responsive websites designed around your brand,
-                  audience, and goals. From landing pages to complete business
-                  websites.
-                </p>
-              </div>
-
-              <div class="service-arrow">↗</div>
-            </article>
-
-            <article class="service-item">
-              <div class="service-number">02</div>
-
-              <div class="service-content">
-                <h3>UI / UX Design</h3>
-
-                <p>
-                  Clean and intuitive interfaces that make websites and digital
-                  products easy and enjoyable to use.
-                </p>
-              </div>
-
-              <div class="service-arrow">↗</div>
-            </article>
-
-            <article class="service-item">
-              <div class="service-number">03</div>
-
-              <div class="service-content">
-                <h3>Graphic Design</h3>
-
-                <p>
-                  Professional marketing materials, social media graphics,
-                  advertisements, posters, presentations, and digital artwork.
-                </p>
-              </div>
-
-              <div class="service-arrow">↗</div>
-            </article>
-
-            <article class="service-item">
-              <div class="service-number">04</div>
-
-              <div class="service-content">
-                <h3>Branding & Visual Identity</h3>
-
-                <p>
-                  Logos, typography, color systems, brand guidelines, and visual
-                  assets designed to create a consistent identity.
-                </p>
-              </div>
-
-              <div class="service-arrow">↗</div>
-            </article>
-
-            <article class="service-item">
-              <div class="service-number">05</div>
-
-              <div class="service-content">
-                <h3>Social Media Design</h3>
-
-                <p>
-                  Engaging social media graphics, promotional content,
-                  thumbnails, campaigns, and digital advertisements.
-                </p>
-              </div>
-
-              <div class="service-arrow">↗</div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- =========================================
-     WORK
-========================================= -->
-
-      <section class="section work" id="work">
-        <div class="container">
-          <div class="section-heading">
-            <div class="section-label">
-              <span>03</span>
-
-              SELECTED WORK
-            </div>
-
-            <h2>
-              Ideas made
-
-              <span>visual.</span>
-            </h2>
-          </div>
-
-          <div class="work-grid">
-            <article class="project project-large">
-              <div class="project-image project-one">
-                <div class="project-overlay">
-                  <span> WEB DEVELOPMENT </span>
-
-                  <strong> DIGITAL EXPERIENCE </strong>
-
-                  <p>Website Design & Development</p>
-                </div>
-              </div>
-            </article>
-
-            <article class="project">
-              <div class="project-image project-two">
-                <div class="project-overlay">
-                  <span> BRAND IDENTITY </span>
-
-                  <strong> BRAND SYSTEM </strong>
-
-                  <p>Identity & Graphic Design</p>
-                </div>
-              </div>
-            </article>
-
-            <article class="project">
-              <div class="project-image project-three">
-                <div class="project-overlay">
-                  <span> SOCIAL MEDIA </span>
-
-                  <strong> CAMPAIGN </strong>
-
-                  <p>Digital Content & Visual Design</p>
-                </div>
-              </div>
-            </article>
-          </div>
-
-          <div class="work-footer">
-            <span> MORE PROJECTS COMING SOON </span>
-
-            <div class="line"></div>
-
-            <span> FLUXION / 2026 </span>
-          </div>
-        </div>
-      </section>
-
-      <!-- =========================================
-     PROCESS
-========================================= -->
-
-      <section class="section process" id="process">
-        <div class="container">
-          <div class="section-heading">
-            <div class="section-label">
-              <span>04</span>
-
-              OUR PROCESS
-            </div>
-
-            <h2>
-              From idea to
-
-              <span>launch.</span>
-            </h2>
-          </div>
-
-          <div class="process-grid">
-            <div class="process-card">
-              <span> 01 </span>
-
-              <h3>Discover</h3>
-
-              <p>
-                We learn about your business, goals, audience, and what you want
-                to achieve.
-              </p>
-            </div>
-
-            <div class="process-card">
-              <span> 02 </span>
-
-              <h3>Plan</h3>
-
-              <p>
-                We define the structure, visual direction, content, and overall
-                project strategy.
-              </p>
-            </div>
-
-            <div class="process-card">
-              <span> 03 </span>
-
-              <h3>Design</h3>
-
-              <p>
-                We transform ideas into visual concepts, interfaces, graphics,
-                and brand assets.
-              </p>
-            </div>
-
-            <div class="process-card">
-              <span> 04 </span>
-
-              <h3>Deliver</h3>
-
-              <p>
-                We develop, refine, test, and deliver the final product ready
-                for the real world.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- =========================================
-     CONTACT
-========================================= -->
-
-      <section class="section contact" id="contact">
-        <div class="container">
-          <div class="contact-grid">
-            <!-- CONTACT INFORMATION -->
-
-            <div class="contact-info">
-              <div class="section-label">
-                <span>05</span>
-
-                START A PROJECT
-              </div>
-
-              <h2>
-                Let's build
-
-                <span>something.</span>
-              </h2>
-
-              <p>
-                Have a website, brand, or design project in mind? Tell us what
-                you're working on and we'll get back to you.
-              </p>
-
-              <div class="contact-email">
-                <span> EMAIL US DIRECTLY </span>
-
-                <a href="#" id="directEmailLink" class="direct-email-link">
-                  dereglafrancisjulian@gmail.com
-                </a>
-              </div>
-            </div>
-
-            <!-- CONTACT FORM -->
-
-            <div class="contact-form-wrapper">
-              <form
-                class="contact-form"
-                action="https://formsubmit.co/dereglafrancisjulian@gmail.com"
-                method="POST">
-                <!-- EMAIL SUBJECT -->
-
-                <input
-                  type="hidden"
-                  name="_subject"
-                  value="New FLUXION Project Inquiry" />
-
-                <!-- DISABLE CAPTCHA -->
-
-                <input type="hidden" name="_captcha" value="false" />
-
-                <!--
-                        AFTER SUBMISSION
-
-                        Replace this URL with your
-                        actual GitHub Pages URL (or
-                        wherever the site is hosted)
-                        once it's live.
-
-                        Example:
-
-                        https://yourusername.github.io/fluxion-studio/#contact
-                    -->
-
-                <input
-                  type="hidden"
-                  name="_next"
-                  value="https://YOUR-GITHUB-FlugelcodeX.github.io/fluxion-studio/#contact" />
-
-                <div class="form-row">
-                  <div class="form-group">
-                    <label for="name"> YOUR NAME </label>
-
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      placeholder="John Doe"
-                      required />
-                  </div>
-
-                  <div class="form-group">
-                    <label for="email"> YOUR EMAIL </label>
-
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      placeholder="john@example.com"
-                      required />
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="purpose"> PROJECT TYPE </label>
-
-                  <select id="purpose" name="project_type" required>
-                    <option value="">Select a service</option>
-
-                    <option value="Website Design">Website Design</option>
-
-                    <option value="Website Development">
-                      Website Development
-                    </option>
-
-                    <option value="Graphic Design">Graphic Design</option>
-
-                    <option value="Branding">Branding & Visual Identity</option>
-
-                    <option value="UI / UX Design">UI / UX Design</option>
-
-                    <option value="Social Media Design">
-                      Social Media Design
-                    </option>
-
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
-
-                <div class="form-group">
-                  <label for="message"> TELL US ABOUT YOUR PROJECT </label>
-
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="7"
-                    placeholder="Tell us about your project, goals, requirements, budget, or ideas..."
-                    required></textarea>
-                </div>
-
-                <button
-                  type="submit"
-                  class="button button-primary submit-button">
-                  Send Inquiry
-
-                  <span> ↗ </span>
-                </button>
-
-                <p class="form-note">
-                  Your inquiry will be sent directly to the FLUXION team.
-                </p>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- =========================================
-     FOOTER
-========================================= -->
-
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-top">
-          <div>
-            <a href="#home" class="logo"> FLUXION<span>.</span> </a>
-
-            <p>Websites. Design. Digital experiences.</p>
-          </div>
-
-          <div class="footer-links">
-            <div>
-              <span> EXPLORE </span>
-
-              <a href="#about"> About </a>
-
-              <a href="#services"> Services </a>
-
-              <a href="#work"> Work </a>
-
-              <a href="#process"> Process </a>
-            </div>
-
-            <div>
-              <span> CONNECT </span>
-
-              <a href="#contact"> Email </a>
-
-              <a href="#"> LinkedIn </a>
-
-              <a href="#"> Instagram </a>
-
-              <a href="#"> GitHub </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="footer-bottom">
-          <span> © 2026 FLUXION. ALL RIGHTS RESERVED. </span>
-
-          <span> DESIGNED & BUILT BY FLUXION </span>
-        </div>
-      </div>
-    </footer>
-
-    <script src="./script.js"></script>
-  </body>
-</html>
+  <p class="form-note">
+    Your inquiry will be sent directly to the FLUXION team.
+  </p>
+</form>

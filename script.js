@@ -3,6 +3,7 @@
 ========================================= */
 
 const menuToggle = document.getElementById("menuToggle");
+
 const navLinks = document.querySelector(".nav-links");
 
 if (menuToggle && navLinks) {
@@ -115,7 +116,6 @@ document.addEventListener("mousemove", (event) => {
 
 /* =========================================
    DIRECT EMAIL SEND
-   No mail client popup
 ========================================= */
 
 const directEmailLink = document.getElementById("directEmailLink");
@@ -130,7 +130,7 @@ if (directEmailLink) {
 
     try {
       const response = await fetch(
-        "https://formsubmit.co/ajax/dereglafrancisjulian@gmail.com",
+        "https://formsubmit.co/ajax/dereglafrancisjulianderegla@gmail.com",
         {
           method: "POST",
 
@@ -142,6 +142,8 @@ if (directEmailLink) {
 
           body: JSON.stringify({
             _subject: "Quick contact click — FLUXION website",
+
+            _url: "https://flugelcodex.github.io/Fluxion_Studio/",
 
             message:
               "A visitor clicked 'Email Us Directly' on the FLUXION website and wants to get in touch.",
@@ -159,17 +161,19 @@ if (directEmailLink) {
         directEmailLink.textContent = originalText;
       }, 4000);
     } catch (error) {
+      console.error("Direct email error:", error);
+
       directEmailLink.textContent = originalText;
 
-      alert("Something went wrong — please use the form below instead.");
+      alert("Something went wrong. Please use the inquiry form.");
     }
   });
 }
 
 /* =========================================
    CONTACT FORM
-   AJAX SUBMISSION
-   STAYS ON THE WEBSITE
+   FORMSubmit AJAX
+   STAY ON FLUXION WEBSITE
 ========================================= */
 
 const contactForm = document.querySelector(".contact-form");
@@ -177,161 +181,157 @@ const contactForm = document.querySelector(".contact-form");
 if (contactForm) {
   contactForm.addEventListener("submit", async (event) => {
     /*
-     * IMPORTANT:
-     * Prevent the browser from leaving
-     * the FLUXION website.
+     * Stop normal HTML form submission.
+     *
+     * Without this, the browser leaves
+     * the GitHub Pages website.
      */
 
     event.preventDefault();
 
     const submitButton = contactForm.querySelector(".submit-button");
 
-    const originalButtonHTML = submitButton ? submitButton.innerHTML : "";
-
-    /* ==============================
-               LOADING STATE
-            ============================== */
-
-    if (submitButton) {
-      submitButton.disabled = true;
-
-      submitButton.style.opacity = "0.7";
-
-      submitButton.innerHTML = `
-                    Sending Inquiry...
-                    <span>↗</span>
-                    `;
+    if (!submitButton) {
+      return;
     }
+
+    const originalButtonHTML = submitButton.innerHTML;
+
+    /* =====================================
+               LOADING
+            ===================================== */
+
+    submitButton.disabled = true;
+
+    submitButton.style.opacity = "0.7";
+
+    submitButton.innerHTML = `
+                Sending Inquiry...
+                <span>↗</span>
+                `;
 
     try {
       /*
-       * Collect everything from
-       * the form.
+       * Collect all form fields.
        */
 
       const formData = new FormData(contactForm);
 
       /*
-       * Send the form using FormSubmit's
-       * AJAX endpoint instead of normal
-       * form submission.
+       * Send to FormSubmit AJAX.
        */
 
       const response = await fetch(
-        "https://formsubmit.co/ajax/dereglafrancisjulian@gmail.com",
+        "https://formsubmit.co/ajax/dereglafrancisjulianderegla@gmail.com",
         {
           method: "POST",
-
-          body: formData,
 
           headers: {
             Accept: "application/json",
           },
+
+          body: formData,
         },
       );
 
       /*
-       * Convert response to JSON.
+       * FormSubmit returns JSON.
        */
 
-      const result = await response.json();
+      let result = null;
 
-      /*
-       * Check if FormSubmit
-       * accepted the message.
-       */
-
-      if (!response.ok || result.success === false) {
-        throw new Error("Form submission failed");
+      try {
+        result = await response.json();
+      } catch (jsonError) {
+        console.warn("FormSubmit did not return JSON.", jsonError);
       }
 
-      /* ==============================
-                   SUCCESS STATE
-                ============================== */
+      console.log("FLUXION FormSubmit response:", result);
+
+      /*
+       * Only HTTP errors should
+       * be treated as failed.
+       */
+
+      if (!response.ok) {
+        throw new Error("FormSubmit request failed");
+      }
+
+      /* =====================================
+                   SUCCESS
+                ===================================== */
 
       contactForm.innerHTML = `
                     <div
-                        style="
-                            min-height: 420px;
-                            display: flex;
-                            flex-direction: column;
-                            align-items: center;
-                            justify-content: center;
-                            text-align: center;
-                            padding: 30px;
-                        "
+                        class="form-success"
                     >
 
                         <div
-                            style="
-                                width: 70px;
-                                height: 70px;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                margin-bottom: 25px;
-                                border: 1px solid rgba(37, 137, 255, 0.45);
-                                border-radius: 50%;
-                                background: rgba(37, 137, 255, 0.08);
-                                color: #55B8FF;
-                                font-size: 28px;
-                            "
+                            class="success-icon"
                         >
+
                             ✓
+
+                        </div>
+
+
+                        <div
+                            class="success-label"
+                        >
+
+                            INQUIRY RECEIVED
+
                         </div>
 
 
                         <h3
-                            style="
-                                font-family: 'Space Grotesk', sans-serif;
-                                font-size: 32px;
-                                margin-bottom: 15px;
-                            "
+                            class="success-title"
                         >
-                            Inquiry Sent.
+
+                            Thank You.
+
                         </h3>
 
 
                         <p
-                            style="
-                                max-width: 430px;
-                                color: #7186A3;
-                                font-size: 14px;
-                                line-height: 1.8;
-                            "
+                            class="success-description"
                         >
-                            Thank you for reaching out to FLUXION.
-                            We've received your inquiry and will
-                            get back to you as soon as possible.
+
+                            Your project inquiry has been
+                            sent successfully to the FLUXION
+                            team. We'll get back to you as
+                            soon as possible.
+
                         </p>
 
 
                         <button
                             type="button"
                             id="sendAnotherButton"
-                            class="button button-secondary"
-                            style="
-                                margin-top: 30px;
-                            "
+                            class="button success-button"
                         >
+
                             Send Another Inquiry
+
                         </button>
 
                     </div>
                     `;
 
-      /* ==============================
+      /* =====================================
                    SEND ANOTHER INQUIRY
-                ============================== */
+                ===================================== */
 
       const sendAnotherButton = document.getElementById("sendAnotherButton");
 
       if (sendAnotherButton) {
         sendAnotherButton.addEventListener("click", () => {
           /*
-           * Reloading the page restores
-           * the original form and keeps
-           * the user on the same website.
+           * Restore the page without
+           * redirecting to FormSubmit.
+           *
+           * This reloads the SAME
+           * GitHub Pages URL.
            */
 
           window.location.reload();
@@ -340,17 +340,15 @@ if (contactForm) {
     } catch (error) {
       console.error("FLUXION form error:", error);
 
-      /* ==============================
-                   ERROR STATE
-                ============================== */
+      /* =====================================
+                   ERROR
+                ===================================== */
 
-      if (submitButton) {
-        submitButton.disabled = false;
+      submitButton.disabled = false;
 
-        submitButton.style.opacity = "1";
+      submitButton.style.opacity = "1";
 
-        submitButton.innerHTML = originalButtonHTML;
-      }
+      submitButton.innerHTML = originalButtonHTML;
 
       alert(
         "We couldn't send your inquiry. Please check your connection and try again.",

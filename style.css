@@ -403,6 +403,8 @@ select {
   border: 1px solid var(--border);
 
   color: var(--text);
+
+  background: transparent;
 }
 
 .button-secondary:hover {
@@ -1033,6 +1035,8 @@ select {
   font-size: 20px;
 
   transition: 0.3s;
+
+  word-break: break-word;
 }
 
 .contact-email a:hover {
@@ -1147,12 +1151,114 @@ select {
   align-self: flex-start;
 }
 
+.submit-button:disabled {
+  cursor: wait;
+
+  transform: none;
+}
+
 .form-note {
   color: #53657d;
 
   font-size: 10px;
 
   line-height: 1.6;
+}
+
+/* =========================================
+   FORM SUCCESS
+========================================= */
+
+.form-success {
+  animation: successFade 0.5s ease forwards;
+}
+
+.success-icon {
+  width: 76px;
+
+  height: 76px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-bottom: 28px;
+
+  border: 1px solid rgba(37, 137, 255, 0.45);
+
+  border-radius: 50%;
+
+  background: rgba(37, 137, 255, 0.08);
+
+  color: var(--blue-400);
+
+  font-size: 30px;
+
+  box-shadow: 0 0 35px rgba(37, 137, 255, 0.12);
+}
+
+.success-label {
+  color: var(--blue-400);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.18em;
+
+  margin-bottom: 14px;
+}
+
+.success-title {
+  font-family: "Space Grotesk", sans-serif;
+
+  font-size: 38px;
+
+  line-height: 1;
+
+  margin-bottom: 18px;
+}
+
+.success-description {
+  max-width: 460px;
+
+  color: var(--muted);
+
+  font-size: 14px;
+
+  line-height: 1.8;
+}
+
+.success-button {
+  margin-top: 32px;
+
+  border: 1px solid var(--border);
+
+  background: transparent;
+
+  color: var(--text);
+}
+
+.success-button:hover {
+  border-color: var(--blue-500);
+
+  background: rgba(23, 105, 209, 0.08);
+}
+
+@keyframes successFade {
+  from {
+    opacity: 0;
+
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
 }
 
 /* =========================================
