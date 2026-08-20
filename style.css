@@ -1017,7 +1017,7 @@ select {
   border-top: 1px solid var(--border);
 }
 
-.contact-email span {
+.contact-email > span:first-child {
   color: var(--blue-500);
 
   font-size: 9px;
@@ -1027,7 +1027,13 @@ select {
   letter-spacing: 0.15em;
 }
 
-.contact-email a {
+/* =========================================
+   COPY EMAIL
+========================================= */
+
+#directEmailLink {
+  display: inline-block;
+
   color: var(--blue-white);
 
   font-family: "Space Grotesk", sans-serif;
@@ -1037,9 +1043,19 @@ select {
   transition: 0.3s;
 
   word-break: break-word;
+
+  cursor: pointer;
+
+  user-select: none;
 }
 
-.contact-email a:hover {
+#directEmailLink:hover {
+  color: var(--blue-400);
+}
+
+#directEmailLink:focus {
+  outline: none;
+
   color: var(--blue-400);
 }
 
@@ -1572,5 +1588,9 @@ select {
     flex-direction: column;
 
     gap: 12px;
+  }
+
+  #directEmailLink {
+    font-size: 17px;
   }
 }

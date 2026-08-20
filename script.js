@@ -114,61 +114,78 @@ document.addEventListener("mousemove", (event) => {
 });
 
 /* =========================================
-   DIRECT EMAIL SEND
+   COPY EMAIL
 ========================================= */
 
 const directEmailLink = document.getElementById("directEmailLink");
 
 if (directEmailLink) {
-  const originalText = directEmailLink.textContent;
+  const emailAddress = "dereglafrancisjulian@gmail.com";
 
-  directEmailLink.addEventListener("click", async (event) => {
-    event.preventDefault();
+  const originalText = directEmailLink.textContent.trim();
 
-    directEmailLink.textContent = "Sending...";
-
+  async function copyEmail() {
     try {
-      const response = await fetch(
-        "https://formsubmit.co/ajax/dereglafrancisjulian@gmail.com",
-        {
-          method: "POST",
+      await navigator.clipboard.writeText(emailAddress);
 
-          headers: {
-            "Content-Type": "application/json",
-
-            Accept: "application/json",
-          },
-
-          body: JSON.stringify({
-            _subject: "Quick contact click — FLUXION website",
-
-            _url: "https://flugelcodex.github.io/Fluxion_Studio/",
-
-            message:
-              "A visitor clicked 'Email Us Directly' on the FLUXION website and wants to get in touch.",
-          }),
-        },
-      );
-
-      const result = await response.json();
-
-      console.log("FLUXION direct email response:", result);
-
-      if (!response.ok || result.success === false) {
-        throw new Error(result.message || "FormSubmit rejected the request.");
-      }
-
-      directEmailLink.textContent = "Sent — we'll be in touch ✓";
+      directEmailLink.textContent = "EMAIL COPIED ✓";
 
       setTimeout(() => {
         directEmailLink.textContent = originalText;
-      }, 4000);
+      }, 2000);
     } catch (error) {
-      console.error("Direct email error:", error);
+      console.error("Failed to copy email:", error);
 
-      directEmailLink.textContent = originalText;
+      /*
+       * Fallback for browsers where
+       * navigator.clipboard is unavailable.
+       */
 
-      alert("The email could not be sent. Please use the inquiry form.");
+      const temporaryInput = document.createElement("textarea");
+
+      temporaryInput.value = emailAddress;
+
+      temporaryInput.style.position = "fixed";
+
+      temporaryInput.style.opacity = "0";
+
+      document.body.appendChild(temporaryInput);
+
+      temporaryInput.focus();
+
+      temporaryInput.select();
+
+      try {
+        document.execCommand("copy");
+
+        directEmailLink.textContent = "EMAIL COPIED ✓";
+
+        setTimeout(() => {
+          directEmailLink.textContent = originalText;
+        }, 2000);
+      } catch (fallbackError) {
+        console.error("Fallback copy failed:", fallbackError);
+
+        alert(
+          "Unable to copy the email automatically. Please copy it manually.",
+        );
+      }
+
+      document.body.removeChild(temporaryInput);
+    }
+  }
+
+  directEmailLink.addEventListener("click", copyEmail);
+
+  /*
+   * Allow keyboard users to copy the email.
+   */
+
+  directEmailLink.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+
+      copyEmail();
     }
   });
 }
@@ -218,22 +235,22 @@ if (contactForm) {
     const originalButtonHTML = submitButton.innerHTML;
 
     /* =====================================
-           LOADING
-        ===================================== */
+       LOADING
+    ===================================== */
 
     submitButton.disabled = true;
 
     submitButton.style.opacity = "0.7";
 
     submitButton.innerHTML = `
-            Sending Inquiry...
-            <span>↗</span>
-            `;
+      Sending Inquiry...
+      <span>↗</span>
+    `;
 
     try {
       /* =====================================
-               COLLECT FORM DATA
-            ===================================== */
+         COLLECT FORM DATA
+      ===================================== */
 
       const formData = new FormData(form);
 
@@ -244,8 +261,8 @@ if (contactForm) {
       }
 
       /* =====================================
-               SEND TO FORMSUBMIT
-            ===================================== */
+         SEND TO FORMSUBMIT
+      ===================================== */
 
       const response = await fetch(
         "https://formsubmit.co/ajax/dereglafrancisjulian@gmail.com",
@@ -261,8 +278,8 @@ if (contactForm) {
       );
 
       /* =====================================
-               READ RESPONSE
-            ===================================== */
+         READ RESPONSE
+      ===================================== */
 
       let result;
 
@@ -277,8 +294,8 @@ if (contactForm) {
       console.log("FLUXION FormSubmit response:", result);
 
       /* =====================================
-               CHECK FOR ACTUAL SUCCESS
-            ===================================== */
+         CHECK FOR ACTUAL SUCCESS
+      ===================================== */
 
       if (!response.ok || result.success === false) {
         throw new Error(
@@ -287,77 +304,64 @@ if (contactForm) {
       }
 
       /* =====================================
-               SUCCESS SCREEN
-            ===================================== */
+         SUCCESS SCREEN
+      ===================================== */
 
       form.innerHTML = `
-                <div class="form-success">
+        <div class="form-success">
 
-                    <div class="success-icon">
-                        ✓
-                    </div>
+          <div class="success-icon">
+            ✓
+          </div>
 
+          <div class="success-label">
+            INQUIRY RECEIVED
+          </div>
 
-                    <div class="success-label">
-                        INQUIRY RECEIVED
-                    </div>
+          <h3 class="success-title">
+            Thank You.
+          </h3>
 
+          <p class="success-description">
+            Your project inquiry has been
+            sent successfully to the FLUXION
+            team. We'll get back to you as
+            soon as possible.
+          </p>
 
-                    <h3 class="success-title">
-                        Thank You.
-                    </h3>
+          <button
+            type="button"
+            id="sendAnotherButton"
+            class="button success-button"
+          >
+            Send Another Inquiry
+          </button>
 
-
-                    <p class="success-description">
-
-                        Your project inquiry has been
-                        sent successfully to the FLUXION
-                        team. We'll get back to you as
-                        soon as possible.
-
-                    </p>
-
-
-                    <button
-                        type="button"
-                        id="sendAnotherButton"
-                        class="button success-button"
-                    >
-
-                        Send Another Inquiry
-
-                    </button>
-
-                </div>
-                `;
+        </div>
+      `;
 
       /* =====================================
-               SEND ANOTHER INQUIRY
-            ===================================== */
+         SEND ANOTHER INQUIRY
+      ===================================== */
 
       const sendAnotherButton = document.getElementById("sendAnotherButton");
 
       if (sendAnotherButton) {
         sendAnotherButton.addEventListener("click", () => {
           /*
-           * Restore the original form.
-           *
-           * No reload.
-           *
-           * No redirect.
+           * Restore original form.
            */
 
           form.innerHTML = originalFormHTML;
 
           /*
-           * Reconnect the submit
-           * event listener.
+           * Reconnect submit listener.
            */
 
           initializeContactForm();
 
           /*
-           * Focus the name field.
+           * Focus name field.
            */
 
           const nameInput = form.querySelector("#name");
@@ -371,8 +375,8 @@ if (contactForm) {
       console.error("FLUXION form error:", error);
 
       /* =====================================
-               ERROR STATE
-            ===================================== */
+         ERROR STATE
+      ===================================== */
 
       submitButton.disabled = false;
 
