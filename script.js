@@ -129,7 +129,7 @@ if (directEmailLink) {
 
     try {
       const response = await fetch(
-        "https://formsubmit.co/ajax/dereglafrancisjulianderegla@gmail.com",
+        "https://formsubmit.co/ajax/dereglafrancisjulian@gmail.com",
         {
           method: "POST",
 
@@ -248,7 +248,7 @@ if (contactForm) {
             ===================================== */
 
       const response = await fetch(
-        "https://formsubmit.co/ajax/dereglafrancisjulianderegla@gmail.com",
+        "https://formsubmit.co/ajax/dereglafrancisjulian@gmail.com",
         {
           method: "POST",
 
