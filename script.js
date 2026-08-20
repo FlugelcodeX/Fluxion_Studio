@@ -106,3 +106,49 @@ document.addEventListener("mousemove", (event) => {
 
   cursorGlow.style.top = `${event.clientY}px`;
 });
+
+/* =========================================
+   DIRECT EMAIL SEND (no mail client popup)
+========================================= */
+
+const directEmailLink = document.getElementById("directEmailLink");
+
+if (directEmailLink) {
+  const originalText = directEmailLink.textContent;
+
+  directEmailLink.addEventListener("click", async (event) => {
+    event.preventDefault();
+
+    directEmailLink.textContent = "Sending...";
+
+    try {
+      const response = await fetch(
+        "https://formsubmit.co/ajax/dereglafrancisjulian@gmail.com",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            _subject: "Quick contact click — FLUXION website",
+            message:
+              "A visitor clicked 'Email Us Directly' on the FLUXION site and wants to get in touch.",
+          }),
+        },
+      );
+
+      if (!response.ok) throw new Error("Request failed");
+
+      directEmailLink.textContent = "Sent — we'll be in touch ✓";
+
+      setTimeout(() => {
+        directEmailLink.textContent = originalText;
+      }, 4000);
+    } catch (error) {
+      directEmailLink.textContent = originalText;
+
+      alert("Something went wrong — please use the form below instead.");
+    }
+  });
+}

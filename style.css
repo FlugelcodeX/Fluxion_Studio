@@ -1039,6 +1039,10 @@ select {
   color: var(--blue-400);
 }
 
+.direct-email-link {
+  cursor: pointer;
+}
+
 /* =========================================
    CONTACT FORM
 ========================================= */
