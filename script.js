@@ -88,13 +88,21 @@ if ("IntersectionObserver" in window) {
 const cursorGlow = document.createElement("div");
 
 cursorGlow.style.position = "fixed";
+
 cursorGlow.style.width = "250px";
+
 cursorGlow.style.height = "250px";
+
 cursorGlow.style.borderRadius = "50%";
+
 cursorGlow.style.pointerEvents = "none";
+
 cursorGlow.style.zIndex = "-1";
+
 cursorGlow.style.background = "rgba(37, 137, 255, 0.035)";
+
 cursorGlow.style.filter = "blur(60px)";
+
 cursorGlow.style.transform = "translate(-50%, -50%)";
 
 document.body.appendChild(cursorGlow);
@@ -142,8 +150,12 @@ if (directEmailLink) {
         },
       );
 
-      if (!response.ok) {
-        throw new Error("Request failed");
+      const result = await response.json();
+
+      console.log("FLUXION direct email response:", result);
+
+      if (!response.ok || result.success === false) {
+        throw new Error(result.message || "FormSubmit rejected the request.");
       }
 
       directEmailLink.textContent = "Sent — we'll be in touch ✓";
@@ -156,7 +168,7 @@ if (directEmailLink) {
 
       directEmailLink.textContent = originalText;
 
-      alert("Something went wrong. Please use the inquiry form.");
+      alert("The email could not be sent. Please use the inquiry form.");
     }
   });
 }
@@ -169,16 +181,13 @@ const contactForm = document.querySelector(".contact-form");
 
 if (contactForm) {
   /*
-   * Save the ORIGINAL form HTML.
-   *
-   * We will use this to restore the form
-   * without reloading the page.
+   * Save the original form HTML.
    */
 
   const originalFormHTML = contactForm.innerHTML;
 
   /*
-   * Function that initializes the form.
+   * Initialize the contact form.
    */
 
   function initializeContactForm() {
@@ -192,7 +201,7 @@ if (contactForm) {
   }
 
   /*
-   * Handle form submission.
+   * Submit the form through AJAX.
    */
 
   async function handleFormSubmit(event) {
@@ -209,7 +218,7 @@ if (contactForm) {
     const originalButtonHTML = submitButton.innerHTML;
 
     /* =====================================
-           LOADING STATE
+           LOADING
         ===================================== */
 
     submitButton.disabled = true;
@@ -222,15 +231,21 @@ if (contactForm) {
             `;
 
     try {
-      /*
-       * Collect form data.
-       */
+      /* =====================================
+               COLLECT FORM DATA
+            ===================================== */
 
       const formData = new FormData(form);
 
-      /*
-       * Send using FormSubmit AJAX.
-       */
+      console.log("FLUXION form data:");
+
+      for (const [key, value] of formData.entries()) {
+        console.log(key, ":", value);
+      }
+
+      /* =====================================
+               SEND TO FORMSUBMIT
+            ===================================== */
 
       const response = await fetch(
         "https://formsubmit.co/ajax/dereglafrancisjulianderegla@gmail.com",
@@ -245,26 +260,30 @@ if (contactForm) {
         },
       );
 
-      /*
-       * Try to read FormSubmit response.
-       */
+      /* =====================================
+               READ RESPONSE
+            ===================================== */
 
-      let result = null;
+      let result;
 
       try {
         result = await response.json();
       } catch (jsonError) {
-        console.warn("Could not read FormSubmit JSON response.", jsonError);
+        console.error("FormSubmit JSON error:", jsonError);
+
+        throw new Error("FormSubmit did not return a valid response.");
       }
 
       console.log("FLUXION FormSubmit response:", result);
 
-      /*
-       * Check HTTP status.
-       */
+      /* =====================================
+               CHECK FOR ACTUAL SUCCESS
+            ===================================== */
 
-      if (!response.ok) {
-        throw new Error("FormSubmit request failed");
+      if (!response.ok || result.success === false) {
+        throw new Error(
+          result.message || "FormSubmit rejected the submission.",
+        );
       }
 
       /* =====================================
@@ -323,23 +342,22 @@ if (contactForm) {
           /*
            * Restore the original form.
            *
-           * NO PAGE RELOAD.
+           * No reload.
            *
-           * This is the important fix.
+           * No redirect.
            */
 
           form.innerHTML = originalFormHTML;
 
           /*
-           * Re-enable the form
-           * functionality.
+           * Reconnect the submit
+           * event listener.
            */
 
           initializeContactForm();
 
           /*
-           * Put the user's cursor
-           * back into the name field.
+           * Focus the name field.
            */
 
           const nameInput = form.querySelector("#name");
@@ -363,13 +381,15 @@ if (contactForm) {
       submitButton.innerHTML = originalButtonHTML;
 
       alert(
-        "We couldn't send your inquiry. Please check your connection and try again.",
+        "We couldn't send your inquiry.\n\n" +
+          "Please check the browser console (F12) " +
+          "for the FormSubmit error.",
       );
     }
   }
 
   /*
-   * Initialize the form when the page loads.
+   * Start the form.
    */
 
   initializeContactForm();
